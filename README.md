@@ -31,8 +31,8 @@ Siga os passos abaixo para configurar e executar o projeto localmente:
 1. Clone o repositório para o seu ambiente local:
 
    ```bash
-   git clone https://github.com/seu-usuario/sneaker-haven.git
-   cd sneaker-haven
+   git clone https://github.com/O-Farias/Sneaker-Haven.git
+   cd sneaker-app
    ```
 
 2. Instale as dependências do projeto:
