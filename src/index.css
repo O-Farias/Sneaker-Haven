@@ -1,0 +1,68 @@
+body {
+  font-family: "Roboto", sans-serif;
+  background-color: #f8f9fa;
+}
+
+h1,
+h3,
+h2 {
+  font-family: "Oswald", sans-serif;
+}
+
+.section-title {
+  text-align: left;
+  font-size: 2rem;
+  margin-bottom: 1rem;
+}
+
+.navbar-dark .navbar-nav .nav-link {
+  color: #ffffff;
+}
+
+.navbar-dark .navbar-brand {
+  color: #ff6f61;
+}
+
+.btn-primary {
+  background-color: #ff6f61;
+  border-color: #ff6f61;
+}
+
+.card {
+  transition: transform 0.3s, box-shadow 0.3s;
+}
+
+.card:hover {
+  transform: translateY(-10px);
+  box-shadow: 0 10px 20px rgba(0, 0, 0, 0.12);
+}
+
+.card img {
+  height: 300px;
+  object-fit: cover;
+}
+
+.custom-carousel .carousel-item img {
+  max-height: 400px;
+  object-fit: contain;
+  width: 100%;
+  margin: 0 auto;
+}
+
+.custom-carousel .carousel-caption {
+  position: static;
+  color: #000;
+  background-color: rgba(255, 255, 255, 0.75);
+  padding: 10px;
+  text-align: center;
+  width: 100%;
+  left: 0;
+  bottom: 0;
+  margin-top: 10px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: black;
+  background-size: 100%, 100%;
+}
