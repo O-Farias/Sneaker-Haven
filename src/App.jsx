@@ -158,7 +158,7 @@ function App() {
                   onChange={(e) => setPrecoMax(e.target.value)}
                 />
                 {produtoSelecionado && (
-                  <Form.Text>R$ {produtoSelecionado.price}</Form.Text>
+                  <Form.Text> {produtoSelecionado.price}</Form.Text>
                 )}
               </Form.Group>
             </Col>
