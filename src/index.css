@@ -75,3 +75,12 @@ h2 {
 .social-icon:hover {
   transform: scale(1.1);
 }
+
+.tech-icon {
+  transition: transform 0.2s;
+  font-size: 24px;
+}
+
+.tech-icon:hover {
+  transform: scale(1.1);
+}

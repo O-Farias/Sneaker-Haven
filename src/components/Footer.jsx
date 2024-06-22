@@ -46,8 +46,22 @@ const Footer = () => {
             &copy; Sneaker haven 2024, todos os direitos reservados.
           </div>
           <div className="col text-end">
-            Feito com <FaReact style={{ fontSize: "24px" }} /> e{" "}
-            <FaBootstrap style={{ fontSize: "24px" }} />
+            Feito com{" "}
+            <a
+              href="https://react.dev/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaReact className="tech-icon" style={{ color: "#61DAFB" }} />
+            </a>{" "}
+            e{" "}
+            <a
+              href="https://getbootstrap.com/"
+              target="_blank"
+              rel="noopener noreferrer"
+            >
+              <FaBootstrap className="tech-icon" style={{ color: "#7952B3" }} />
+            </a>
           </div>
         </div>
       </div>
