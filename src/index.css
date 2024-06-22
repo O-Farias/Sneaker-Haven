@@ -66,3 +66,12 @@ h2 {
   background-color: black;
   background-size: 100%, 100%;
 }
+
+.social-icon {
+  transition: transform 0.2s;
+  font-size: 24px;
+}
+
+.social-icon:hover {
+  transform: scale(1.1);
+}
