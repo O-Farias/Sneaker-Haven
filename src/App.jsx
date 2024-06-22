@@ -15,6 +15,7 @@ import {
   Carousel,
 } from "react-bootstrap";
 import "./index.css";
+import Footer from "./components/Footer";
 
 function App() {
   const [palavraChave, setPalavraChave] = useState("");
@@ -201,6 +202,7 @@ function App() {
           </Pagination>
         )}
       </Container>
+      <Footer />
     </>
   );
 }
