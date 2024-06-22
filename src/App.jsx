@@ -189,7 +189,7 @@ function App() {
           ))}
         </Row>
         {totalPaginas > 1 && (
-          <Pagination className="justify-content-center">
+          <Pagination className="pagination">
             {[...Array(totalPaginas).keys()].map((numero) => (
               <Pagination.Item
                 key={numero + 1}
