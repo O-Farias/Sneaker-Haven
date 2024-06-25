@@ -17,6 +17,7 @@ import {
 import "./index.css";
 import Footer from "./components/Footer";
 
+// Componente principal da aplicação
 function App() {
   const [palavraChave, setPalavraChave] = useState("");
   const [marca, setMarca] = useState("");
