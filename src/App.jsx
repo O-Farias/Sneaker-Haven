@@ -104,7 +104,7 @@ function App() {
               alt={`Slide ${index + 1}`}
             />
             <Carousel.Caption>
-              <h3>{tenisItem.name}</h3>
+              <h3>{tenisItem.shoeName}</h3>
               <p>{tenisItem.colorway}</p>
             </Carousel.Caption>
           </Carousel.Item>
@@ -178,11 +178,11 @@ function App() {
               <Card className="sneaker-card">
                 <Card.Img variant="top" src={tenisItem.thumbnail} />
                 <Card.Body>
-                  <Card.Title>{tenisItem.name}</Card.Title>
+                  <Card.Title>{tenisItem.shoeName}</Card.Title>
                   <Card.Text>{tenisItem.colorway}</Card.Text>
                   <Card.Text>
-                    {tenisItem.price
-                      ? `R$ ${tenisItem.price}`
+                    {tenisItem.retailPrice
+                      ? `$${tenisItem.retailPrice}`
                       : "Preço não disponível"}
                   </Card.Text>
                 </Card.Body>
