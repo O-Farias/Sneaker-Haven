@@ -88,3 +88,15 @@ h2 {
 .pagination {
   justify-content: center;
 }
+
+.galeria img {
+  width: 100px; /* Ajuste a largura conforme necessário */
+  margin: 10px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+}
+
+.galeria {
+  display: flex;
+  flex-wrap: wrap;
+}
