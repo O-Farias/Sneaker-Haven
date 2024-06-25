@@ -8,6 +8,7 @@ const port = 5000;
 
 app.use(cors());
 
+// Rota para buscar tênis
 app.get("/api/sneakers", (req, res) => {
   const {
     palavraChave,
@@ -27,7 +28,7 @@ app.get("/api/sneakers", (req, res) => {
     pagina,
     limite,
   });
-
+  // Busca os tênis com a palavra-chave
   sneaks.getProducts(palavraChave, 50, (err, products) => {
     if (err) {
       res.status(500).send(err);
@@ -53,7 +54,7 @@ app.get("/api/sneakers", (req, res) => {
           (p) => p.retailPrice && p.retailPrice <= parseFloat(precoMax)
         );
       }
-
+      // Paginação
       const inicio = (pagina - 1) * limite;
       const fim = inicio + limite;
       const paginados = filtrados.slice(inicio, fim);
@@ -67,7 +68,7 @@ app.get("/api/sneakers", (req, res) => {
     }
   });
 });
-
+// Inicia o servidor
 app.listen(port, () => {
   console.log(`Servidor rodando em http://localhost:${port}`);
 });

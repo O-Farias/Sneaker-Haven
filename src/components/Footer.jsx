@@ -8,6 +8,7 @@ import {
 } from "react-icons/fa";
 import "../index.css";
 
+// Componente que renderiza o footer da página
 const Footer = () => {
   return (
     <footer className="bg-light text-lg-start">

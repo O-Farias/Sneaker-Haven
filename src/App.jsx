@@ -31,6 +31,7 @@ function App() {
   const [carrosselTenis, setCarrosselTenis] = useState([]);
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
 
+  // Função que será executada assim que o componente for montado
   useEffect(() => {
     const buscarTenisAleatorios = async () => {
       try {
@@ -38,7 +39,7 @@ function App() {
           params: { palavraChave: "Nike", pagina: 1 },
         });
         const resultados = response.data.resultados;
-
+        // Gera 5 fotos aleatórias entre 0 e o tamanho do array de resultados
         const aleatorios = [];
         while (aleatorios.length < 5 && resultados.length > 0) {
           const indexAleatorio = Math.floor(Math.random() * resultados.length);
@@ -53,6 +54,7 @@ function App() {
     buscarTenisAleatorios();
   }, []);
 
+  // Função que busca os tênis de acordo com os filtros
   const buscarTenis = async (e) => {
     e.preventDefault();
     setLoading(true);
@@ -70,12 +72,12 @@ function App() {
       setLoading(false);
     }
   };
-
+  // Função que muda a página de resultados
   const handlePaginaChange = (numeroPagina) => {
     setPagina(numeroPagina);
     buscarTenis({ preventDefault: () => {} });
   };
-
+  // Renderiza o componente
   return (
     <>
       <Navbar bg="dark" variant="dark" expand="lg">
@@ -107,7 +109,6 @@ function App() {
           </Carousel.Item>
         ))}
       </Carousel>
-
       <Container>
         <h2 className="section-title">Filtros</h2>
         <Form onSubmit={buscarTenis} className="mb-4">
