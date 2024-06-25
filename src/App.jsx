@@ -13,6 +13,7 @@ import {
   Navbar,
   Nav,
   Carousel,
+  Modal,
 } from "react-bootstrap";
 import "./index.css";
 import Footer from "./components/Footer";
@@ -31,6 +32,8 @@ function App() {
   const [totalPaginas, setTotalPaginas] = useState(1);
   const [carrosselTenis, setCarrosselTenis] = useState([]);
   const [produtoSelecionado, setProdutoSelecionado] = useState(null);
+  const [showModal, setShowModal] = useState(false);
+  const [selectedTenis, setSelectedTenis] = useState(null);
 
   // Função que será executada assim que o componente for montado
   useEffect(() => {
@@ -73,11 +76,22 @@ function App() {
       setLoading(false);
     }
   };
+
   // Função que muda a página de resultados
   const handlePaginaChange = (numeroPagina) => {
     setPagina(numeroPagina);
     buscarTenis({ preventDefault: () => {} });
   };
+
+  // função que lida com o clique no botão de compra
+  const handleCompraClick = (tenisItem) => {
+    setSelectedTenis(tenisItem);
+    setShowModal(true);
+  };
+
+  //função que fecha o modal
+  const handleCloseModal = () => setShowModal(false);
+
   // Renderiza o componente
   return (
     <>
@@ -185,11 +199,47 @@ function App() {
                       ? `$${tenisItem.retailPrice}`
                       : "Preço não disponível"}
                   </Card.Text>
+                  <Button
+                    variant="primary"
+                    onClick={() => handleCompraClick(tenisItem)}
+                  >
+                    Comprar
+                  </Button>
                 </Card.Body>
               </Card>
             </Col>
           ))}
         </Row>
+        <Modal show={showModal} onHide={handleCloseModal}>
+          <Modal.Header closeButton>
+            <Modal.Title>Opções de Compra</Modal.Title>
+          </Modal.Header>
+          <Modal.Body>
+            {selectedTenis && (
+              <div>
+                <p>
+                  Escolha uma opção de compra para: {selectedTenis.shoeName}
+                </p>
+                {/* Iterar sobre os resellLinks e exibir cada um como um link */}
+                {Object.entries(selectedTenis.resellLinks).map(
+                  ([key, value]) => (
+                    <div key={key}>
+                      <a href={value} target="_blank" rel="noopener noreferrer">
+                        {key} {/* O nome da plataforma de revenda */}
+                      </a>
+                      <br />
+                    </div>
+                  )
+                )}
+              </div>
+            )}
+          </Modal.Body>
+          <Modal.Footer>
+            <Button variant="secondary" onClick={handleCloseModal}>
+              Fechar
+            </Button>
+          </Modal.Footer>
+        </Modal>
         {totalPaginas > 1 && (
           <Pagination className="pagination">
             {[...Array(totalPaginas).keys()].map((numero) => (
