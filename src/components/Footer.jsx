@@ -44,7 +44,7 @@ const Footer = () => {
             </a>
           </div>
           <div className="col-6 text-center">
-            &copy; Sneaker haven 2024, todos os direitos reservados.
+            &copy; Sneaker Haven 2024, todos os direitos reservados.
           </div>
           <div className="col text-end">
             Feito com{" "}
