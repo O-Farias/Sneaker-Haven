@@ -2,6 +2,7 @@ import React, { useState, useEffect } from "react";
 import "../styles/features.css";
 import axios from "axios";
 import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
+import Footer from "../components/Footer";
 
 const GaleriaDeFotos = () => {
   const [produtos, setProdutos] = useState([]);
@@ -19,6 +20,7 @@ const GaleriaDeFotos = () => {
           (a, b) => new Date(b.releaseDate) - new Date(a.releaseDate)
         );
 
+        // Limitar a quantidade de produtos exibidos na galeria
         setProdutos(produtosOrdenados);
         setLoading(false);
       } catch (erro) {
@@ -39,44 +41,48 @@ const GaleriaDeFotos = () => {
     return <Alert variant="danger">{error}</Alert>;
   }
 
+  // Renderizar a galeria de fotos
   return (
-    <Container>
-      <h2 className="titulo-produtos">Modelos Lançados Recentemente</h2>
-      <Row className="galeria">
-        {produtos.map((produto, index) => (
-          <Col key={index} sm={12} md={6} lg={4} className="mb-4">
-            <Card className="h-100">
-              <Card.Img
-                variant="top"
-                src={produto.thumbnail}
-                alt={produto.shoeName}
-                className="card-img-top"
-              />
-              <Card.Body>
-                <Card.Title>{produto.shoeName}</Card.Title>
-                <Card.Text>
-                  {produto.description || "Sem descrição disponível"}
-                </Card.Text>
-                <ul className="list-unstyled">
-                  <li>
-                    <strong>Marca:</strong> {produto.make}
-                  </li>
-                  <li>
-                    <strong>Cor:</strong> {produto.colorway}
-                  </li>
-                  <li>
-                    <strong>Preço:</strong>{" "}
-                    {produto.retailPrice
-                      ? `$${produto.retailPrice}`
-                      : "Preço não disponível"}
-                  </li>
-                </ul>
-              </Card.Body>
-            </Card>
-          </Col>
-        ))}
-      </Row>
-    </Container>
+    <>
+      <Container>
+        <h2 className="titulo-produtos">Modelos Lançados Recentemente</h2>
+        <Row className="galeria">
+          {produtos.map((produto, index) => (
+            <Col key={index} sm={12} md={6} lg={4} className="mb-4">
+              <Card className="h-100">
+                <Card.Img
+                  variant="top"
+                  src={produto.thumbnail}
+                  alt={produto.shoeName}
+                  className="card-img-top"
+                />
+                <Card.Body>
+                  <Card.Title>{produto.shoeName}</Card.Title>
+                  <Card.Text>
+                    {produto.description || "Sem descrição disponível"}
+                  </Card.Text>
+                  <ul className="list-unstyled">
+                    <li>
+                      <strong>Marca:</strong> {produto.make}
+                    </li>
+                    <li>
+                      <strong>Cor:</strong> {produto.colorway}
+                    </li>
+                    <li>
+                      <strong>Preço:</strong>{" "}
+                      {produto.retailPrice
+                        ? `$${produto.retailPrice}`
+                        : "Preço não disponível"}
+                    </li>
+                  </ul>
+                </Card.Body>
+              </Card>
+            </Col>
+          ))}
+        </Row>
+      </Container>
+      <Footer />
+    </>
   );
 };
 
