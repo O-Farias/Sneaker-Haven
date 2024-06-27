@@ -3,6 +3,7 @@ import "../styles/features.css";
 import axios from "axios";
 import { Container, Row, Col, Card, Spinner, Alert } from "react-bootstrap";
 import Footer from "../components/Footer";
+import Comments from "../components/Comments";
 
 const GaleriaDeFotos = () => {
   const [produtos, setProdutos] = useState([]);
@@ -81,9 +82,12 @@ const GaleriaDeFotos = () => {
           ))}
         </Row>
       </Container>
+      <Comments />
       <Footer />
     </>
   );
 };
+
+// No final do seu arquivo Features.jsx
 
 export default GaleriaDeFotos;
