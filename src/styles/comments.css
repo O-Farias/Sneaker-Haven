@@ -1,37 +1,26 @@
 /* Estilização para o componente AvaliacoesEComentarios */
 .avaliacoes-e-comentarios-container {
-  display: flex;
-  flex-direction: column;
-  align-items: center;
-  justify-content: center;
+  max-width: 600px;
+  margin: auto;
   padding: 20px;
 }
 
 .formulario-avaliacao {
-  max-width: 500px;
-  width: 100%;
-  margin: auto;
-  padding: 20px;
   box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
   border-radius: 8px;
 }
 
-.formulario-avaliacao label,
-.formulario-avaliacao button {
-  display: block;
-  width: 100%;
-  margin-bottom: 10px;
+.formulario-avaliacao .form-group {
+  margin-bottom: 15px;
 }
 
-.formulario-avaliacao input,
-.formulario-avaliacao textarea,
-.formulario-avaliacao button {
+.formulario-avaliacao .form-control {
   padding: 10px;
   border-radius: 4px;
   border: 1px solid #ccc;
 }
 
-.formulario-avaliacao button {
+.formulario-avaliacao .btn-primary {
   background-color: #007bff;
   color: white;
   border: none;

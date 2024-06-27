@@ -1,11 +1,14 @@
 import React, { useState } from "react";
 import "../styles/comments.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 
 // Componente para exibir uma única avaliação
 const Avaliacao = ({ avaliacao }) => (
-  <div>
-    <p>Classificação: {avaliacao.classificacao} Estrelas</p>
-    <p>Comentário: {avaliacao.comentario}</p>
+  <div className="card my-3">
+    <div className="card-body">
+      <p>Classificação: {avaliacao.classificacao} Estrelas</p>
+      <p>Comentário: {avaliacao.comentario}</p>
+    </div>
   </div>
 );
 
@@ -13,35 +16,50 @@ const Avaliacao = ({ avaliacao }) => (
 const FormularioAvaliacao = ({ adicionarAvaliacao }) => {
   const [classificacao, setClassificacao] = useState(5);
   const [comentario, setComentario] = useState("");
+  const [error, setError] = useState("");
 
   const handleSubmit = (e) => {
     e.preventDefault();
+    if (classificacao < 1 || classificacao > 5) {
+      setError("A classificação deve estar entre 1 e 5.");
+      return;
+    }
+    if (comentario.trim() === "") {
+      setError("O comentário não pode estar vazio.");
+      return;
+    }
     adicionarAvaliacao({ classificacao, comentario });
     setClassificacao(5); // Reseta o estado
     setComentario(""); // Reseta o estado
+    setError(""); // Reseta o estado
   };
 
   return (
-    <div className="formulario-avaliacao">
+    <div className="formulario-avaliacao card p-4 my-4">
       <form onSubmit={handleSubmit}>
-        <label>
-          Classificação:
+        {error && <div className="alert alert-danger">{error}</div>}
+        <div className="form-group">
+          <label>Classificação:</label>
           <input
             type="number"
+            className="form-control"
             value={classificacao}
             onChange={(e) => setClassificacao(e.target.value)}
             min="1"
             max="5"
           />
-        </label>
-        <label>
-          Comentário:
+        </div>
+        <div className="form-group">
+          <label>Comentário:</label>
           <textarea
+            className="form-control"
             value={comentario}
             onChange={(e) => setComentario(e.target.value)}
           />
-        </label>
-        <button type="submit">Enviar Avaliação</button>
+        </div>
+        <button type="submit" className="btn btn-primary mt-3">
+          Enviar Avaliação
+        </button>
       </form>
     </div>
   );
@@ -56,14 +74,11 @@ const AvaliacoesEComentarios = () => {
   };
 
   return (
-    <div className="avaliacoes-e-comentarios-container">
-      <h2>Avaliações e Comentários</h2>
-      <FormularioAvaliacao
-        adicionarAvaliacao={adicionarAvaliacao}
-        className="formulario-avaliacao"
-      />
+    <div className="avaliacoes-e-comentarios-container container mt-5">
+      <h2 className="text-center mb-4">Avaliações e Comentários</h2>
+      <FormularioAvaliacao adicionarAvaliacao={adicionarAvaliacao} />
       {avaliacoes.map((avaliacao, index) => (
-        <Avaliacao key={index} avaliacao={avaliacao} className="avaliacao" />
+        <Avaliacao key={index} avaliacao={avaliacao} />
       ))}
     </div>
   );

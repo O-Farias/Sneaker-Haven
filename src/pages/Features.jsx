@@ -88,6 +88,4 @@ const GaleriaDeFotos = () => {
   );
 };
 
-// No final do seu arquivo Features.jsx
-
 export default GaleriaDeFotos;
