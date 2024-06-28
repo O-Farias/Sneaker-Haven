@@ -3,11 +3,17 @@ import "../styles/comments.css";
 import "bootstrap/dist/css/bootstrap.min.css";
 
 // Componente para exibir uma única avaliação
-const Avaliacao = ({ avaliacao }) => (
+const Avaliacao = ({ avaliacao, removerAvaliacao }) => (
   <div className="card my-3">
     <div className="card-body">
       <p>Classificação: {avaliacao.classificacao} Estrelas</p>
       <p>Comentário: {avaliacao.comentario}</p>
+      <button
+        className="btn btn-danger"
+        onClick={() => removerAvaliacao(avaliacao.id)}
+      >
+        Remover
+      </button>
     </div>
   </div>
 );
@@ -18,6 +24,7 @@ const FormularioAvaliacao = ({ adicionarAvaliacao }) => {
   const [comentario, setComentario] = useState("");
   const [error, setError] = useState("");
 
+  // Função para lidar com o envio do formulário
   const handleSubmit = (e) => {
     e.preventDefault();
     if (classificacao < 1 || classificacao > 5) {
@@ -28,7 +35,7 @@ const FormularioAvaliacao = ({ adicionarAvaliacao }) => {
       setError("O comentário não pode estar vazio.");
       return;
     }
-    adicionarAvaliacao({ classificacao, comentario });
+    adicionarAvaliacao({ classificacao, comentario, id: Date.now() });
     setClassificacao(5); // Reseta o estado
     setComentario(""); // Reseta o estado
     setError(""); // Reseta o estado
@@ -69,16 +76,26 @@ const FormularioAvaliacao = ({ adicionarAvaliacao }) => {
 const AvaliacoesEComentarios = () => {
   const [avaliacoes, setAvaliacoes] = useState([]);
 
+  // Função para adicionar uma nova avaliação
   const adicionarAvaliacao = (avaliacao) => {
     setAvaliacoes([...avaliacoes, avaliacao]);
+  };
+
+  // Função para remover uma avaliação existente
+  const removerAvaliacao = (id) => {
+    setAvaliacoes(avaliacoes.filter((avaliacao) => avaliacao.id !== id));
   };
 
   return (
     <div className="avaliacoes-e-comentarios-container container mt-5">
       <h2 className="text-center mb-4">Avaliações e Comentários</h2>
       <FormularioAvaliacao adicionarAvaliacao={adicionarAvaliacao} />
-      {avaliacoes.map((avaliacao, index) => (
-        <Avaliacao key={index} avaliacao={avaliacao} />
+      {avaliacoes.map((avaliacao) => (
+        <Avaliacao
+          key={avaliacao.id}
+          avaliacao={avaliacao}
+          removerAvaliacao={removerAvaliacao}
+        />
       ))}
     </div>
   );
